@@ -13,8 +13,21 @@ const UrlGraph3D = dynamic(() => import('./UrlGraph3D'), {
   ),
 });
 
+type StatusType = 'match' | 'different' | 'missing' | 'extra';
+type PriorityType = 'high' | 'medium' | 'low';
+
+interface UrlItem {
+  id: string;
+  category: string;
+  planned: string;
+  current: string | null;
+  status: StatusType;
+  priority: PriorityType;
+  children?: UrlItem[];
+}
+
 // Dados mockados de arquitetura de URLs
-const urlArchitectureData = [
+const urlArchitectureData: UrlItem[] = [
   {
     id: '1',
     category: 'Categoria Principal',
@@ -171,19 +184,7 @@ const urlArchitectureData = [
   },
 ];
 
-type StatusType = 'match' | 'different' | 'missing' | 'extra';
-type PriorityType = 'high' | 'medium' | 'low';
 type ViewMode = 'tree' | 'table' | 'comparison' | 'graph3d';
-
-interface UrlItem {
-  id: string;
-  category: string;
-  planned: string;
-  current: string | null;
-  status: StatusType;
-  priority: PriorityType;
-  children?: UrlItem[];
-}
 
 const statusConfig: Record<StatusType, { label: string; color: string; bg: string; icon: string }> = {
   match: { label: 'Conforme', color: 'text-green-700', bg: 'bg-green-100', icon: '✓' },

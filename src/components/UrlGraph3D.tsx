@@ -186,7 +186,7 @@ export default function UrlGraph3D() {
     setMounted(true);
   }, []);
 
-  const handleNodeClick = useCallback((node: GraphNode) => {
+  const handleNodeClick = useCallback((node: any) => {
     setSelectedNode(node);
 
     // Destacar nós conectados
